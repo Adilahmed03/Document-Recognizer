@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Recognizer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at 50% 50%, #1e1e2f, #0d0d1f);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 25%;
+            background: #28293e;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            animation: fadeInLeft 1s;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+            animation: fadeInLeft 1s;
+        }
+
+        .sidebar ul li a {
+            color: #aaa;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background: #393a56;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #3a86ff;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Main content styling */
+        .main-content {
+            margin-left: 25%;
+            padding: 40px;
+            width: 75%;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .upload-section {
+            background: #28293e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s;
+        }
+
+        .upload-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .upload-section input[type="file"] {
+            background: #393a56;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .upload-section input[type="file"]:hover {
+            transform: scale(1.05);
+        }
+
+        .upload-section button {
+            background: #3a86ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(58, 134, 255, 0.5);
+        }
+
+        .upload-section button:hover {
+            background: #265bbf;
+            box-shadow: 0 6px 15px rgba(58, 134, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        footer p {
+            animation: fadeIn 1.5s;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Previous Uploads</h2>
+        <ul id="upload-list">
+            <li><a href="#">Document 1</a></li>
+            <li><a href="#">Document 2</a></li>
+            <li><a href="#">Document 3</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Document Recognizer</h1>
+        <div class="upload-section">
+            <h2>Upload a Document</h2>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" id="file" required>
+                <button type="submit">Upload and Process</button>
+            </form>
+        </div>
+        <div id="results-section">
+            <!-- Results will be dynamically displayed here -->
+        </div>
+        <footer>
+            <p>Powered by AI • Document Recognition Made Easy</p>
+        </footer>
+    </div>
+</body>
+</html>
